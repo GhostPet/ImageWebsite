@@ -31,11 +31,8 @@
 
 ## About
 
-A manga website created for being used for implementing image protection techniques. 
-
-Key features of **Manga Website**:
-
-- Currently none
+A manga website created for being used for implementing image protection techniques.
+This is a modified repo of the [Create A Flask Blog - Flask Friday](https://youtube.com/playlist?list=PLCC34OHNcOtolz2Vd9ZSeSXWc8Bq23yEz&si=RXuNuItgTL_ntbHJ) by [Codemy.com](https://www.youtube.com/@Codemycom)
 
 ## Getting Started
 
@@ -56,6 +53,15 @@ Flask 3.0.2 - [Flask 3.0.x Docs](https://flask.palletsprojects.com/en/3.0.x/)
 ```sh
 pip install flask
 ```
+Flask-WTF 1.2.1 - [Flask-WTF 1.2.x Docs](https://flask-wtf.readthedocs.io/en/1.2.x/)
+```sh
+pip install flask-wtf
+```
+Flask-SQLAlchemy 3.1.1 - [Flask-SQLAlchemy 3.1.x Docs](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/)
+```sh
+pip install flask-sqlalchemy
+```
+
 
 ## Roadmap
 

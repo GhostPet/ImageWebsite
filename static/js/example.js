@@ -1,0 +1,1 @@
+document.getElementById('example').innerHTML = 'Hey, this is changed!';
