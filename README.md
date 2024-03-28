@@ -12,7 +12,7 @@
 <br />
 
 [![license](https://img.shields.io/github/license/GhostPet/ImageWebsite?style=flat-square)](LICENSE)
-[![made with hearth by GhostPet](https://img.shields.io/badge/made_with_hearth_by-GhostPet-orange?style=flat-square)](https://github.com/GhostPet)
+[![made with ♡ by GhostPet](https://img.shields.io/badge/made_with_%E2%99%A1_by-GhostPet-orange?style=flat-square)](https://github.com/GhostPet)
 
 </div>
 
