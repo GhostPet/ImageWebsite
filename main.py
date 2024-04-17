@@ -3,16 +3,18 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from flask_ckeditor import CKEditor
+
 from datetime import datetime
+from uuid import uuid1
+import os
 
 from webforms import UserForm, LoginForm, PostForm, SearchForm
 
 ### App Configs
 app = Flask(__name__)
-
-## CKEditor
-ckeditor = CKEditor(app)
+app.config['UPLOAD_FOLDER'] = 'static/images/'
 
 ## Database
 # Sqlite database
@@ -34,6 +36,9 @@ login_manager.login_view = 'login'
 def load_user(user_id):
 	return User.query.get(int(user_id))
 
+## CKEditor
+ckeditor = CKEditor(app)
+
 
 ### Models
 
@@ -47,6 +52,7 @@ class User(db.Model, UserMixin):
 	date_created = db.Column(db.DateTime, default=datetime.utcnow)
 	posts = db.relationship('Post', backref='author', lazy=True)
 	about_me = db.Column(db.Text, nullable=True)
+	profile_pic = db.Column(db.String(255), nullable=True)
 
 	@property
 	def password(self):
@@ -209,7 +215,7 @@ def dashboard():
 	form.about_me.data = user.about_me
 	if request.method == 'POST':
 		# Check if anything is changed
-		if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data and form.about_me.data == user.about_me:
+		if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data and form.about_me.data == user.about_me and form.profile_pic.data == user.profile_pic:
 			flash('Nothing to update.', 'warning')
 			return render_template('dashboard.html', form=form)
 		# Check if required fields is empty
@@ -232,6 +238,15 @@ def dashboard():
 		user.email = form.email.data
 		user.phone = form.phone.data
 		user.about_me = form.about_me.data
+
+	 	# Profile Picture Naming
+		pic_filename = secure_filename(form.profile_pic.data.filename)
+		pic_name = str(uuid1()) + "_" + pic_filename
+		user.profile_pic = pic_name
+		profile_pic_path = os.path.join(app.config['UPLOAD_FOLDER'], "profile_pics/", pic_name)
+		form.profile_pic.data.save(profile_pic_path)
+		
+
 		try:
 			db.session.commit()
 			flash('User updated successfully.', 'success')

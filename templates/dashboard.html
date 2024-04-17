@@ -27,8 +27,13 @@
                     <p><b>About Me:</b> {{ current_user.about_me }}</p>
                 </div>
                 <div class="col-4">
-                    <img class="img-thumbnail rounded float-end m-3" src="{{ url_for('static', filename='images/defaultprofilepic.jpg') }}"
-                        alt="Default Profile Picture">
+                    {% if current_user.profile_pic %}
+                    <img src="{{ url_for('static', filename='images/profile_pics/'+current_user.profile_pic) }}" class="img-thumbnail rounded float-end m-3"
+                        alt="Profile Pic of {{ current_user.name }}">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='images/defaultprofilepic.jpg') }}"
+                        class="img-thumbnail rounded float-end m-3" alt="Default Profile Picture">
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -44,7 +49,7 @@
     <div class="card-header">
         Update Profile
     </div>
-    <form action="{{ url_for('dashboard') }}" method="post">
+    <form action="{{ url_for('dashboard') }}" method="post" enctype="multipart/form-data">
         <div class="card-body">
             {{ form.hidden_tag() }}
             <div class="mb-3">
@@ -66,6 +71,10 @@
             <div class="mb-3">
                 {{ form.about_me.label(class="form-label") }}
                 {{ form.about_me(class="form-control") }}
+            </div>
+            <div class="mb-3">
+                {{ form.profile_pic.label(class="form-label") }}
+                {{ form.profile_pic(class="form-control", value=current_user.profile_pic) }}
             </div>
         </div>
         <div class="card-footer">
