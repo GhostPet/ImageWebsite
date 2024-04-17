@@ -21,10 +21,9 @@ app.config['UPLOAD_FOLDER'] = 'static/images/'
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 # MySQL database
 # Example: mysql+pymysql://username:password@localhost/db_name
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:1234@localhost/users_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:1234@localhost/users_db'
 # PostgreSQL database
 # Example: postgresql://username:password@localhost/db_name
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://udo4lo8dopvmtu:p2b458e56c2ed777c388ee2ce925951d89234038a09f7c0625e7646ad9b7172e1@cb4l59cdg4fg1k.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d7l97k6gdlt8hk'
 
 
 app.config['SECRET_KEY'] = "wow-so-secret lol"
