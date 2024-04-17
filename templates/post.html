@@ -41,18 +41,19 @@
                     <div class="col-md-10">
                         <div class="card-body">
                             <h5 class="card-title">{{ post.author.name }}</h5>
+
+                            <p class="card-text">
+                                {% if post.author.about_me %}
+                                <b class="text-body-secondary">About Author</b>
+                                <br>
+                                {{ post.author.about_me }}
+                                {% else %}
+                                <b class="text-body-secondary">About Author</b>
+                                <br>
+                                No information available
+                                {% endif %}
+                            </p>
                         </div>
-                        <p class="card-text">
-                            {% if post.author.about_me %}
-                            <b class="text-body-secondary">About Author</b>
-                            <br>
-                            {{ post.author.about_me }}
-                            {% else %}
-                            <b class="text-body-secondary">About Author</b>
-                            <br>
-                            No information available
-                            {% endif %}
-                        </p>
                     </div>
                 </div>
             </div>
