@@ -49,7 +49,7 @@ To install them, you can copy and paste the code below line by line:
 python -m venv ImageWebsite 
 source ImageWebsite/Scripts/activate
 
-pip install -r req.txt
+pip install -r requirements.txt
 ```
 
 Then make sure you can connect the Db of your choice with filling the information in "app.py".
@@ -81,7 +81,7 @@ Install the prequities:
 
 To install them, you can copy and paste the code below:
 ```sh
-pip install -r requirements.txt
+pip install -r req.txt
 ```
 
 ### DB Connections
