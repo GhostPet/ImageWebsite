@@ -97,7 +97,7 @@ def index():
 @app.route('/admin')
 @login_required
 def admin():
-	if current_user.id != 11:
+	if current_user.id != 2:
 		flash('You are not allowed to access this page.', 'danger')
 		return redirect(url_for('dashboard'))
 	return render_template('admin.html')
@@ -166,15 +166,15 @@ def update_user(id):
 		return render_template('update_user.html', form=form, user=user)
 	
 @app.route('/delete_user/<int:id>', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def delete_user(id):
 	user = User.query.get_or_404(id)
 	form = UserForm()
 	# Check if the user logged in is the same user
-	#if current_user.id != user.id:
-		#flash('You are not allowed to delete this user.', 'danger')
-		#users = User.query.all()
-		#return render_template('add_user.html', form=form, users=users)
+	if current_user.id != user.id:
+		flash('You are not allowed to delete this user.', 'danger')
+		users = User.query.all()
+		return render_template('add_user.html', form=form, users=users)
 	try:
 		db.session.delete(user)
 		db.session.commit()
