@@ -216,9 +216,7 @@ def logout():
 def dashboard():
 	form = UserForm()
 	user = current_user
-	form.about_me.data = user.about_me
 	if request.method == 'POST':
-		flash('Debug:' + user.about_me + form.about_me.data , 'warning')
 		# Check if anything is changed
 		if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data and form.about_me.data == user.about_me:
 			flash('Nothing to update.', 'warning')
@@ -258,9 +256,11 @@ def dashboard():
 			flash('User updated successfully.', 'success')
 		except:
 			flash('Database Error: User does not updated.', 'danger')
+		form.about_me.data = user.about_me
 		return render_template('dashboard.html', form=form)
 	
 	else:
+		form.about_me.data = user.about_me
 		return render_template('dashboard.html', form=form)
 	
 @app.route('/add_post', methods=['GET', 'POST'])
