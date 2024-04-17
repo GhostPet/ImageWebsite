@@ -219,9 +219,9 @@ def dashboard():
 	form.about_me.data = user.about_me
 	if request.method == 'POST':
 		# Check if anything is changed
-		if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data and form.about_me.data == user.about_me:
-			flash('Nothing to update.', 'warning')
-			return render_template('dashboard.html', form=form)
+		#if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data and form.about_me.data == user.about_me:
+			#flash('Nothing to update.', 'warning')
+			#return render_template('dashboard.html', form=form)
 		# Check if required fields is empty
 		if form.username.data == '' or form.name.data == '' or form.email.data == '':
 			flash('Please fill the required fields.', 'warning')
