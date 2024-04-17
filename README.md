@@ -64,7 +64,7 @@ Install the prequities:
 
 - **cryptography** 42.0.5 - [cryptography 42.0.5 Docs](https://cryptography.io/en/42.0.5/)
 
-- **Flask-CKEditor** 0.5.1 [Flask-CKEditor lastest Docs](https://flask-ckeditor.readthedocs.io/en/latest/)
+- **Flask-CKEditor** 0.5.1 - [Flask-CKEditor lastest Docs](https://flask-ckeditor.readthedocs.io/en/latest/)
 
 To install them, you can copy and paste the code below:
 ```sh
@@ -77,11 +77,11 @@ pip install -r requirements.txt
 
 - **For MySQL connection:**
   You can change the main.py. Afterwards, you may need to install these additional libraries.
-  - PyMySQL 1.1.0 - For connecting the db with Flask-SQLAlchemy
+  - **PyMySQL** 1.1.0 - [PyMySQL lastest Docs](https://pymysql.readthedocs.io/en/latest/) - For connecting the db with Flask-SQLAlchemy
     ```sh
     pip install PyMySQL
     ```
-  - mysql-connector-python 8.3.0 - For creating a db without using additional tool
+  - **mysql-connector-python** 8.3.0 - [mysql-connector-python Docs](https://dev.mysql.com/doc/connector-python/en/) - For creating a db without using additional tool
     ```sh
     pip install mysql-connector-python
     ```
