@@ -23,8 +23,10 @@
 
 - [About](#about)
 - [Getting Started](#getting-started)
+  - [Quick Start](#quick-start)
   - [Prerequisites](#prerequisites)
   - [DB Connections](#db-connections)
+  - [Heroku Server Connections](#heroku-server-connections)
 - [Roadmap](#roadmap)
 - [License](#license)
 
@@ -39,9 +41,20 @@ This is a modified repo of the [Create A Flask Blog - Flask Friday](https://yout
 
 ## Getting Started
 
-### Prerequisites
-
+### Quick Start
 The recommended method to install **Manga Website** is by using [Git](https://git-scm.com/download)'s bash terminal.
+
+To install them, you can copy and paste the code below line by line:
+```sh
+python -m venv ImageWebsite 
+source ImageWebsite/Scripts/activate
+
+pip install -r req.txt
+```
+
+Then make sure you can connect the Db of your choice with filling the information in "app.py".
+
+### Prerequisites
 
 Create a virtual environment for the project and activate:
 
@@ -73,10 +86,10 @@ pip install -r requirements.txt
 
 ### DB Connections
 - **For SqLite connection:**
-  You can change the main.py
+  You can change the app.py
 
 - **For MySQL connection:**
-  You can change the main.py. Afterwards, you may need to install these additional libraries.
+  You can change the app.py. Afterwards, you may need to install these additional libraries.
   - **PyMySQL** 1.1.0 - [PyMySQL lastest Docs](https://pymysql.readthedocs.io/en/latest/) - For connecting the db with Flask-SQLAlchemy
     ```sh
     pip install PyMySQL
@@ -96,10 +109,46 @@ pip install -r requirements.txt
   mydb.close()
   ```
 
+- **For PostgreSQL connection:**
+  You can change the app.py. Afterwards, you may need to install these additional libraries.
+  - **psycopg2** 2.9.9 - [psycopg2 Docs](https://www.psycopg.org/docs/) - For connecting the db with Flask-SQLAlchemy
+    ```sh
+      pip install psycopg2
+    ```
+  > **Note:** PostgreSQL is not support the db.Text length.
+
+
 For Db migrations, after the changes you may use the command below:
 ```sh
 flask db migrate -m 'Comments'
 flask db upgrade
+```
+
+### Heroku Server Connections
+
+First you need to install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli). After the installation, you must restart the terminal.
+Then you can install this library.
+- **gunicorn** 22.0.0 - [gunicorn 22.0.0 Docs](https://docs.gunicorn.org/en/22.0.0/)
+  ```sh
+    pip install gunicorn
+  ```
+
+Then you can use the following code to log in your heroku account and create an app:
+```sh
+  heroku login
+  heroku create image-website
+  heroku addons:create heroku-postgresql:essential-2 --app image-website
+```
+
+After your db created, you can get the connection link of it and change the information on "app.py".
+```sh
+  heroku config --app image-website
+```
+
+Then you can save the changes and push.
+```sh
+  git commit -am 'Tweaked app for Heroku'
+  git push
 ```
 
 ## Roadmap
