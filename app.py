@@ -218,7 +218,7 @@ def dashboard():
 	user = current_user
 	if request.method == 'POST':
 		# Check if anything is changed
-		if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data and form.about_me.data == user.about_me:
+		if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data and form.about_me.data == user.about_me and form.profile_pic.data is None:
 			flash('Nothing to update.', 'warning')
 			return render_template('dashboard.html', form=form)
 		# Check if required fields is empty
