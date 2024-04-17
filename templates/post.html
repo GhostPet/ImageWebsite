@@ -30,8 +30,13 @@
             <div class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-2">
+                        {% if post.author.profile_pic %}
                         <img src="{{ url_for('static', filename='images/profile_pics/'+post.author.profile_pic) }}"
-                            class="img-thumbnail rounded-circle m-3" alt="Profile Pic of {{ post.author.name }}">
+                            class="img-thumbnail rounded float-start m-3" alt="Profile Pic of {{ post.author.name }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/defaultprofilepic.jpg') }}"
+                            class="img-thumbnail rounded float-start m-3" alt="Default Profile Picture">
+                        {% endif %}
                     </div>
                     <div class="col-md-10">
                         <div class="card-body">
