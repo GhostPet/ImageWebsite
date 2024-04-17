@@ -52,19 +52,19 @@ source ImageWebsite/Scripts/activate
 
 Install the prequities:
 
-**Flask** 3.0.2 - [Flask 3.0.x Docs](https://flask.palletsprojects.com/en/3.0.x/)
+- **Flask** 3.0.2 - [Flask 3.0.x Docs](https://flask.palletsprojects.com/en/3.0.x/)
 
-**Flask-WTF** 1.2.1 - [Flask-WTF 1.2.x Docs](https://flask-wtf.readthedocs.io/en/1.2.x/)
+- **Flask-WTF** 1.2.1 - [Flask-WTF 1.2.x Docs](https://flask-wtf.readthedocs.io/en/1.2.x/)
 
-**Flask-SQLAlchemy** 3.1.1 - [Flask-SQLAlchemy 3.1.x Docs](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/)
+- **Flask-SQLAlchemy** 3.1.1 - [Flask-SQLAlchemy 3.1.x Docs](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/)
 
-**Flask-Migrate** 4.0.7 - [Flask-Migrate lastest Docs](https://flask-migrate.readthedocs.io/en/latest/)
+- **Flask-Migrate** 4.0.7 - [Flask-Migrate lastest Docs](https://flask-migrate.readthedocs.io/en/latest/)
 
-**Flask-Login** 0.6.3 - [Flask-Migrate 0.6.3 Docs](https://flask-login.readthedocs.io/en/0.6.3/)
+- **Flask-Login** 0.6.3 - [Flask-Migrate 0.6.3 Docs](https://flask-login.readthedocs.io/en/0.6.3/)
 
-**cryptography** 42.0.5 - [cryptography 42.0.5 Docs](https://cryptography.io/en/42.0.5/)
+- **cryptography** 42.0.5 - [cryptography 42.0.5 Docs](https://cryptography.io/en/42.0.5/)
 
-**Flask-CKEditor** 0.5.1 [Flask-CKEditor lastest Docs](https://flask-ckeditor.readthedocs.io/en/latest/)
+- **Flask-CKEditor** 0.5.1 [Flask-CKEditor lastest Docs](https://flask-ckeditor.readthedocs.io/en/latest/)
 
 To install them, you can copy and paste the code below:
 ```sh
