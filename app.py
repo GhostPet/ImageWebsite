@@ -252,6 +252,7 @@ def dashboard():
 			form.profile_pic.data.save(profile_pic_path)		
 
 		try:
+			db.session.add(user)
 			db.session.commit()
 			flash('User updated successfully.', 'success')
 		except:
