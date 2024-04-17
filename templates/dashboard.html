@@ -24,6 +24,7 @@
                     <p><b>Email:</b> {{ current_user.email }}</p>
                     <p><b>Phone:</b> {{ current_user.phone }}</p>
                     <p><b>Account Created:</b> {{ current_user.date_created }}</p>
+                    <p><b>About Me:</b> {{ current_user.about_me }}</p>
                 </div>
                 <div class="col-4">
                     <img class="img-thumbnail rounded float-end m-3" src="{{ url_for('static', filename='images/defaultprofilepic.jpg') }}"
@@ -61,6 +62,10 @@
             <div class="mb-3">
                 {{ form.phone.label(class="form-label") }}
                 {{ form.phone(class="form-control", value=current_user.phone) }}
+            </div>
+            <div class="mb-3">
+                {{ form.about_me.label(class="form-label") }}
+                {{ form.about_me(class="form-control") }}
             </div>
         </div>
         <div class="card-footer">

@@ -45,8 +45,8 @@ class User(db.Model, UserMixin):
 	phone = db.Column(db.String(20), nullable=True)
 	password_hash = db.Column(db.String(255))
 	date_created = db.Column(db.DateTime, default=datetime.utcnow)
-	# User posts
 	posts = db.relationship('Post', backref='author', lazy=True)
+	about_me = db.Column(db.Text, nullable=True)
 
 	@property
 	def password(self):
@@ -69,7 +69,6 @@ class Post(db.Model):
 	#author = db.Column(db.String(255), nullable=False)
 	date_created = db.Column(db.DateTime, default=datetime.utcnow)
 	slug = db.Column(db.String(255), nullable=False, unique=True)
-	# Foreign Key to link the user
 	author_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 	def __repr__(self):
@@ -207,9 +206,10 @@ def logout():
 def dashboard():
 	form = UserForm()
 	user = current_user
+	form.about_me.data = user.about_me
 	if request.method == 'POST':
 		# Check if anything is changed
-		if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data:
+		if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data and form.about_me.data == user.about_me:
 			flash('Nothing to update.', 'warning')
 			return render_template('dashboard.html', form=form)
 		# Check if required fields is empty
@@ -231,6 +231,7 @@ def dashboard():
 		user.name = form.name.data
 		user.email = form.email.data
 		user.phone = form.phone.data
+		user.about_me = form.about_me.data
 		try:
 			db.session.commit()
 			flash('User updated successfully.', 'success')
