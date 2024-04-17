@@ -26,14 +26,33 @@
             <h6 class="card-subtitle mb-2 text-body-secondary">Published: {{ post.date_created }}</h6>
             <br>
             <p class="card-text">{{ post.content|safe }}</p>
+            <br>
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-2">
+                        <img src="{{ url_for('static', filename='images/profile_pics/'+post.author.profile_pic) }}"
+                            class="img-thumbnail rounded-circle m-3" alt="Profile Pic of {{ post.author.name }}">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.author.name }}</h5>
+                        </div>
+                        <p class="card-text">
+                            {% if post.author.about_me %}
+                            <b class="text-body-secondary">About Author</b>
+                            <br>
+                            {{ post.author.about_me }}
+                            {% else %}
+                            <b class="text-body-secondary">About Author</b>
+                            <br>
+                            No information available
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-footer">
-            <h6 class="card-title">Author: <a href="{{ url_for('dashboard', id=post.author.id) }}">{{ post.author.username }}</a></h6>
-            {% if post.author.about_me %}
-            <b class="text-body-secondary">About Author</b>
-            <p class="card-text">{{ post.author.about_me }}</p>
-            {% endif %}
-        </div>
+
     </div>
     <br>
     <a href="{{ url_for('posts') }}" class="btn btn-sm btn-outline-secondary">Back to Posts</a>

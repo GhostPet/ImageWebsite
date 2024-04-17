@@ -219,7 +219,7 @@ def dashboard():
 	form.about_me.data = user.about_me
 	if request.method == 'POST':
 		# Check if anything is changed
-		if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data and form.about_me.data == user.about_me and form.profile_pic.data == user.profile_pic:
+		if user.username == form.username.data and user.name == form.name.data and user.email == form.email.data and user.phone == form.phone.data and form.about_me.data == user.about_me:
 			flash('Nothing to update.', 'warning')
 			return render_template('dashboard.html', form=form)
 		# Check if required fields is empty
@@ -243,13 +243,13 @@ def dashboard():
 		user.phone = form.phone.data
 		user.about_me = form.about_me.data
 
-	 	# Profile Picture Naming
-		pic_filename = secure_filename(form.profile_pic.data.filename)
-		pic_name = str(uuid1()) + "_" + pic_filename
-		user.profile_pic = pic_name
-		profile_pic_path = os.path.join(app.config['UPLOAD_FOLDER'], "profile_pics/", pic_name)
-		form.profile_pic.data.save(profile_pic_path)
-		
+		if form.profile_pic.data is not None:
+			# Profile Picture
+			pic_filename = secure_filename(form.profile_pic.data.filename)
+			pic_name = str(uuid1()) + "_" + pic_filename
+			user.profile_pic = pic_name
+			profile_pic_path = os.path.join(app.config['UPLOAD_FOLDER'], "profile_pics/", pic_name)
+			form.profile_pic.data.save(profile_pic_path)		
 
 		try:
 			db.session.commit()
