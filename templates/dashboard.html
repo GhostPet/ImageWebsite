@@ -15,13 +15,23 @@
     <div class="card-header">
         Hello <b>{{ current_user.name }}</b>!
     </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Id: {{ current_user.id }}</li>
-        <li class="list-group-item">Username: {{ current_user.username }}</li>
-        <li class="list-group-item">Email: {{ current_user.email }}</li>
-        <li class="list-group-item">Phone: {{ current_user.phone }}</li>
-        <li class="list-group-item">Account Created: {{ current_user.date_created }}</li>
-    </ul>
+    <div class="card-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 mt-4">
+                    <p><b>Id:</b> {{ current_user.id }}</p>
+                    <p><b>Username:</b> {{ current_user.username }}</p>
+                    <p><b>Email:</b> {{ current_user.email }}</p>
+                    <p><b>Phone:</b> {{ current_user.phone }}</p>
+                    <p><b>Account Created:</b> {{ current_user.date_created }}</p>
+                </div>
+                <div class="col-4">
+                    <img class="img-thumbnail rounded float-end m-3" src="{{ url_for('static', filename='images/defaultprofilepic.jpg') }}"
+                        alt="Default Profile Picture">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card-footer">
         <a class="btn btn-secondary btn-sm" href="{{ url_for('logout') }}">Log Out</a>
         <a class="btn btn-secondary btn-sm" href="{{ url_for('update_user', id=current_user.id) }}">Update User</a>

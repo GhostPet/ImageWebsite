@@ -24,7 +24,7 @@
 - [About](#about)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-    - [DB Connections](#db-connections)
+  - [DB Connections](#db-connections)
 - [Roadmap](#roadmap)
 - [License](#license)
 
@@ -71,7 +71,7 @@ To install them, you can copy and paste the code below:
 pip install -r requirements.txt
 ```
 
-#### DB Connections
+### DB Connections
 - **For SqLite connection:**
   You can change the main.py
 

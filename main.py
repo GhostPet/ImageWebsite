@@ -85,6 +85,14 @@ with app.app_context():
 def index():
 	return render_template('index.html')
 
+@app.route('/admin')
+@login_required
+def admin():
+	if current_user.id != 11:
+		flash('You are not allowed to access this page.', 'danger')
+		return redirect(url_for('dashboard'))
+	return render_template('admin.html')
+
 @app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
 	name = None
@@ -317,8 +325,7 @@ def search():
 		posts = Post.query.filter(Post.title.like('%'+query+'%') | Post.content.like('%'+query+'%') ).all()
 		return render_template('search.html', posts=posts, form=form)
 	else:
-		posts = Post.query.all()
-		return render_template('search.html', posts=posts, form=form)
+		return redirect(url_for('posts'))
 
 ## Error Pages
 
