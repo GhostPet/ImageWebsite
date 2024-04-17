@@ -9,14 +9,55 @@
 </div>
 {% endfor %}
 
-{% if name %}
-<h1>User List:</h1>
+{% if not name %}
+<h1>Add User:</h1>
 <br>
+
+<div class="container shadow p-3">
+    <form action="/add_user" method="post">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.phone.label(class="form-label") }}
+            {{ form.phone(class="form-control") }}
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control") }}
+            </div>
+            <div class="col mb-3">
+                {{ form.confirm_password.label(class="form-label") }}
+                {{ form.confirm_password(class="form-control") }}
+            </div>
+        </div>
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-secondary") }}
+        </div>
+    </form>
+</div>
+<br>
+{% endif %}
+
+<h2>User List:</h2>
 <table class="table shadow">
     <thead>
         <tr>
             <th>Name</th>
+            <th>Username</th>
             <th>Email</th>
+            <th>Phone</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -24,31 +65,16 @@
         {% for user in users %}
         <tr>
             <td>{{ user.name }}</td>
+            <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
             <td>
-                <a href="/edit_user/{{ user.id }}" class="btn btn-primary">Edit</a>
-                <a href="/delete_user/{{ user.id }}" class="btn btn-danger">Delete</a>
+                <a href="{{ url_for('update_user', id=user.id) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ url_for('delete_user', id=user.id) }}" class="btn btn-danger">Delete</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
-{% else %}
-<form action="/add_user" method="post">
-    {{ form.hidden_tag() }}
-    <div class="mb-3">
-        {{ form.name.label(class="form-label") }}
-        {{ form.name(class="form-control") }}
-    </div>
-    <div class="mb-3">
-        {{ form.email.label(class="form-label") }}
-        {{ form.email(class="form-control") }}
-    </div>
-    <div class="mb-3">
-        {{ form.submit(class="btn btn-secondary") }}
-    </div>
-</form>
-{% endif %}
 
 {% endblock %}

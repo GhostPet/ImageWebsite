@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages(with_categories=true) %}
+<div class="alert alert-{{ message[0] }} alert-dismissible fade show" role="alert">
+    {{ message[1] }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+{% if user.id == current_user.id %}
+<h1>Update User:</h1>
+<br>
+<div class="container shadow p-3">
+    <form action="/update_user/{{ user.id }}" method="post">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control", value=user.name) }}
+        </div>
+        <div class="mb-3">
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control", value=user.username) }}
+        </div>
+        <div class="mb-3">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control", value=user.email) }}
+        </div>
+        <div class="mb-3">
+            {{ form.phone.label(class="form-label") }}
+            {{ form.phone(class="form-control", value=user.phone) }}
+        </div>
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-secondary") }}
+            <!-- Delete Button -->
+            <a href="{{ url_for('delete_user', id=user.id) }}" class="btn btn-danger">Delete</a>
+        </div>
+    </form>
+</div>
+{% else %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Sorry, you are not authorized to update this user.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+{% endif %}
+
+{% endblock %}

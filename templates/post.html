@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages(with_categories=true) %}
+<div class="alert alert-{{ message[0] }} alert-dismissible fade show" role="alert">
+    {{ message[1] }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+{% if post %}
+
+<div class="container">
+
+    <!-- Back to Posts -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('posts') }}">Posts</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+        </ol>
+    </nav>
+    <div class="card shadow border-0">
+        <div class="card-body">
+            <h1 class="card-title">{{ post.title }}</h1>
+            <h6 class="card-subtitle mb-2 text-body-secondary">By: {{ post.author.name }}</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Published: {{ post.date_created }}</h6>
+            <br>
+            <p class="card-text">{{ post.content|safe }}</p>
+        </div>
+    </div>
+    <br>
+    <a href="{{ url_for('posts') }}" class="btn btn-sm btn-outline-secondary">Back to Posts</a>
+    {% if post.author.id == current_user.id %}
+    <a href="{{ url_for('edit_post', slug=post.slug) }}" class="btn btn-sm btn-outline-secondary">Edit Post</a>
+    <a href="{{ url_for('delete_post', slug=post.slug) }}" class="btn btn-sm btn-outline-danger">Delete Post</a>
+    {% endif %}
+</div>
+
+{% else %}
+
+<div class="container">
+    <h1>Post Not Found</h1>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -16,12 +16,15 @@
 
 </div>
 
+---
+
 <details open="open">
-<summary>Table of Contents</summary>
+<summary style="font-size:1.4rem;"><b style="font-size:1.5rem;margin-left:0.5rem">Table of Contents</b></summary>
 
 - [About](#about)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
+    - [DB Connections](#db-connections)
 - [Roadmap](#roadmap)
 - [License](#license)
 
@@ -49,19 +52,49 @@ source ImageWebsite/Scripts/activate
 
 Install the prequities:
 
-Flask 3.0.2 - [Flask 3.0.x Docs](https://flask.palletsprojects.com/en/3.0.x/)
+**Flask** 3.0.2 - [Flask 3.0.x Docs](https://flask.palletsprojects.com/en/3.0.x/)
+**Flask-WTF** 1.2.1 - [Flask-WTF 1.2.x Docs](https://flask-wtf.readthedocs.io/en/1.2.x/)
+**Flask-SQLAlchemy** 3.1.1 - [Flask-SQLAlchemy 3.1.x Docs](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/)
+**Flask-Migrate** 4.0.7 - [Flask-Migrate lastest Docs](https://flask-migrate.readthedocs.io/en/latest/)
+**Flask-Login** 0.6.3 - [Flask-Migrate 0.6.3 Docs](https://flask-login.readthedocs.io/en/0.6.3/)
+**cryptography** 42.0.5 - [cryptography 42.0.5 Docs](https://cryptography.io/en/42.0.5/)
+**Flask-CKEditor** 0.5.1 [Flask-CKEditor lastest Docs](https://flask-ckeditor.readthedocs.io/en/latest/)
+
+To install them, you can copy and paste the code below:
 ```sh
-pip install flask
-```
-Flask-WTF 1.2.1 - [Flask-WTF 1.2.x Docs](https://flask-wtf.readthedocs.io/en/1.2.x/)
-```sh
-pip install flask-wtf
-```
-Flask-SQLAlchemy 3.1.1 - [Flask-SQLAlchemy 3.1.x Docs](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/)
-```sh
-pip install flask-sqlalchemy
+pip install -r requirements.txt
 ```
 
+#### DB Connections
+- **For SqLite connection:**
+  You can change the main.py
+
+- **For MySQL connection:**
+  You can change the main.py. Afterwards, you may need to install these additional libraries.
+  - PyMySQL 1.1.0 - For connecting the db with Flask-SQLAlchemy
+    ```sh
+    pip install PyMySQL
+    ```
+  - mysql-connector-python 8.3.0 - For creating a db without using additional tool
+    ```sh
+    pip install mysql-connector-python
+    ```
+
+  And to create a new db without using a tool like MySQL Workbench, you should create a new file, paste the code below inside, fill it with your db information, and execute the file. Then you can delete the file.
+  ```py #2 create_db.py
+  import mysql.connector
+  mydb = mysql.connector.connect(host="", user="", passwd="") #Fill here
+  mycursor = mydb.cursor()
+  mycursor.execute("CREATE DATABASE users_db")
+  mycursor.close()
+  mydb.close()
+  ```
+
+For Db migrations, after the changes you may use the command below:
+```sh
+flask db migrate -m 'Comments'
+flask db upgrade
+```
 
 ## Roadmap
 

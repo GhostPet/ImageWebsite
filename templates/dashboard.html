@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages(with_categories=true) %}
+<div class="alert alert-{{ message[0] }} alert-dismissible fade show" role="alert">
+    {{ message[1] }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<h1 class="mb-4">User Dashboard</h1>
+
+<div class="card">
+    <div class="card-header">
+        Hello <b>{{ current_user.name }}</b>!
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Id: {{ current_user.id }}</li>
+        <li class="list-group-item">Username: {{ current_user.username }}</li>
+        <li class="list-group-item">Email: {{ current_user.email }}</li>
+        <li class="list-group-item">Phone: {{ current_user.phone }}</li>
+        <li class="list-group-item">Account Created: {{ current_user.date_created }}</li>
+    </ul>
+    <div class="card-footer">
+        <a class="btn btn-secondary btn-sm" href="{{ url_for('logout') }}">Log Out</a>
+        <a class="btn btn-secondary btn-sm" href="{{ url_for('update_user', id=current_user.id) }}">Update User</a>
+        <a class="btn btn-danger btn-sm" href="{{ url_for('delete_user', id=current_user.id) }}">Delete Profile</a>
+    </div>
+</div>
+<br><br>
+<div class="card">
+    <div class="card-header">
+        Update Profile
+    </div>
+    <form action="{{ url_for('dashboard') }}" method="post">
+        <div class="card-body">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+                {{ form.name.label(class="form-label") }}
+                {{ form.name(class="form-control", value=current_user.name) }}
+            </div>
+            <div class="mb-3">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control", value=current_user.username) }}
+            </div>
+            <div class="mb-3">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control", value=current_user.email) }}
+            </div>
+            <div class="mb-3">
+                {{ form.phone.label(class="form-label") }}
+                {{ form.phone(class="form-control", value=current_user.phone) }}
+            </div>
+        </div>
+        <div class="card-footer">
+            {{ form.submit(class="btn btn-sm btn-secondary") }}
+        </div>
+    </form>
+</div>
+<br>
+
+{% endblock %}
