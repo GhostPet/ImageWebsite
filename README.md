@@ -149,6 +149,7 @@ Then you can save the changes and push.
 ```sh
   git commit -am 'Tweaked app for Heroku'
   git push
+  git push heroku main
 ```
 
 ## Roadmap
